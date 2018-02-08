@@ -1,1 +1,14 @@
 
+PS1 <- read.csv(file ="511_PS1data.csv", header = TRUE )
+library(stats4)
+
+
+
+lm(nvisit~age+black+educ+faminc+male+married+ncond+poorh, data = PS1)
+
+
+ wordProb1 <- glm(PS1$nvisit~PS1$age+PS1$black+PS1$educ+PS1$faminc+PS1$male+PS1$married+PS1$ncond+PS1$poorh, family = "poisson")
+ 
+ wordProb2 <-nls(PS1$nvisit~(theta1*PS1$age+theta2*PS1$black+theta3*PS1$educ+theta4*PS1$faminc+theta5*PS1$male+theta6*PS1$married+theta7*PS1$ncond+theta8*PS1$poorh)^2 + theta0 , start = list(theta0 = 4.32295 , theta1 = -0.25472 , theta2 = -0.60921, theta3 = 0.16356, theta4 = -0.01269, theta5 = -0.49278, theta6 = -0.21599, theta7 = 1.15611, theta8 = 2.31724), data = PS1)
+ 
+ #wordProb2 <-nls(PS1$nvisit~(theta1*PS1$age+theta2*PS1$black+theta3*PS1$educ+theta4*PS1$faminc+theta5*PS1$male+theta6*PS1$married+theta7*PS1$ncond+theta8*PS1$poorh)^2 + theta0 , start = list(theta0 = 1 , theta1 = 1 , theta2 = 1, theta3 = 1, theta4 = 1, theta5 = 1, theta6 = 1, theta7 = 1, theta8 = 1), data = PS1)
