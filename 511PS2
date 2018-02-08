@@ -1,1 +1,28 @@
+setwd("//admin-fs1/Users/rwaiters/My Documents/R/Econ 511")
+  data <- read.csv(file ="2017-PS2Data.csv", header = TRUE )
+#head(data)
 
+Wages <- data$wage
+#Age <- data$Age
+Race <- data$black
+Education <- data$educ
+Experience <- data$exper
+
+
+
+Exper2 <- Experience^2
+
+PS2 <- lm(formula = Wages~Education+Experience+Exper2+Race)#
+#Age2 <- Age^2
+
+summary(lm(educ~educm+educf+exper+Exper2+black, data = data))
+summary(tsls(wage~educ+exper+Exper2+black,~educm+educf+exper+Exper2+black, data = data))
+
+
+black <- Education*Race
+
+
+PS2b <- lm(Wages~Age+Age2+black+Education)
+
+summary(PS2b)
+class(data)
